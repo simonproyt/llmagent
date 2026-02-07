@@ -54,7 +54,7 @@ def get_files_info(working_directory, directory="."):
         for item in sorted(os.listdir(target_dir)):
             item_path = os.path.join(target_dir, item)
             file_size = os.path.getsize(item_path)
-            is_dir = os.path.isdir(item_path)
+            is_dir = os.path.isdir(item_path)bootdevbootdev
             items.append({"name": item, "file_size": file_size, "is_dir": is_dir})
 
         return FilesResult(items)
