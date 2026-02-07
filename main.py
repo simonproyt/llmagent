@@ -21,8 +21,9 @@ response = client.models.generate_content(
 prompt_token_count = response.usage_metadata.prompt_token_count
 response_token_count = response.usage_metadata.total_token_count - prompt_token_count
 user_prompt = args.user_prompt.replace("\n", "\\n")
-print(f"User prompt: {user_prompt}")
-print(f"Prompt tokens: {prompt_token_count}")
-print(f"Response tokens: {response_token_count}")
-print("Response:")
+if args.verbose:
+    print(f"User prompt: {user_prompt}")
+    print(f"Prompt tokens: {prompt_token_count}")
+    print(f"Response tokens: {response_token_count}")
+    print("Response:")
 print(response.text)
