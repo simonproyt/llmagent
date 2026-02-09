@@ -29,11 +29,11 @@ def get_file_content(working_directory, file_path):
         # Read file content with character limit
         with open(abs_file_path, 'r', encoding='utf-8') as f:
             content = f.read(MAX_FILE_CHARS)
-            
+
             # Check if file is larger than limit
             if f.read(1):
-                content += f'\n[...File "{file_path}" truncated at {MAX_FILE_CHARS} characters]'
-        
+                content += '\n[Content truncated]'
+
         return content
         
     except Exception as e:
