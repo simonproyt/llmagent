@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 import argparse
 from google.genai import types
+from prompts import system_prompt
 parser = argparse.ArgumentParser(description="Chatbot")
 parser.add_argument("user_prompt", type=str, help="User prompt")
 parser.add_argument("--verbose", action="store_true", help="Enable verbose output")
@@ -16,7 +17,8 @@ from google import genai
 client = genai.Client(api_key=api_key)
 response = client.models.generate_content(
     model="gemini-2.5-flash",
-    contents=messages
+    contents=messages,
+    config=types.GenerateContentConfig(system_instruction=system_prompt),
     )
 prompt_token_count = response.usage_metadata.prompt_token_count
 response_token_count = response.usage_metadata.total_token_count - prompt_token_count
