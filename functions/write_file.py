@@ -1,5 +1,5 @@
 import os
-
+from google.genai import types
 def write_file(working_directory, file_path, content):
     """
     Write content to a file, creating parent directories as needed.
@@ -33,3 +33,16 @@ def write_file(working_directory, file_path, content):
         f.write(content)
     
     return f'Successfully wrote to "{file_path}" ({len(content)} characters written)'
+schema_write_file = types.FunctionDeclaration(
+    name="write_file",
+    description="Writes content to a specified file relative to the working directory, creating parent directories as needed",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "directory": types.Schema(
+                type=types.Type.STRING,
+                description="Directory path to list files from, relative to the working directory (default is the working directory itself)",
+            ),
+        },
+    ),
+)
